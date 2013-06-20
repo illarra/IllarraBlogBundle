@@ -13,7 +13,7 @@
 >
 
     <testsuites>
-        <testsuite name="IllarraCoreBundle Test Suite">
+        <testsuite name="IllarraBlogBundle Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>
