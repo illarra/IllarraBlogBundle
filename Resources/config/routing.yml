@@ -1,0 +1,25 @@
+illarra_blog:
+    resource: "@IllarraBlogBundle/Controller/BlogController.php"
+    type:     annotation
+    prefix:   "/blog"
+
+seo_illarra_blog_post:
+    resource: "../../Controller/Seo/PostController.php"
+    type:     annotation
+    prefix:   ""
+    options:
+        i18n: false
+
+admin_illarra_blog_post:
+    resource: "../../Controller/Admin/PostController.php"
+    type:     annotation
+    prefix:   "/admin/blog"
+    options:
+        i18n: false
+
+admin_illarra_blog_label:
+    resource: "../../Controller/Admin/LabelController.php"
+    type:     annotation
+    prefix:   "/admin/blog"
+    options:
+        i18n: false

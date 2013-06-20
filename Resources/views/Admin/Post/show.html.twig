@@ -1,0 +1,65 @@
+{% extends "IllarraCoreBundle:Admin:layout.html.twig" %}
+
+{% trans_default_domain "illarra_admin" %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="button-bar">
+            <ul class="button-group radius">
+                <li>{{ helper.action_back_button(path('admin_illarra_blog_post_index')) }}</li>
+            </ul>
+            <!--<ul class="button-group radius">
+                <li><a class="compact secondary button" href="#"><i class="icon-twitter"><span class="hide">Share on Twitter</span></i></a></li>
+                <li><a class="compact secondary button" href="#"><i class="icon-facebook"><span class="hide">Share on Facebook</span></i></a></li>
+            </ul>-->
+            <ul class="button-group radius">
+                <li>{{ helper.action_edit_button(path('admin_illarra_blog_post_edit', { 'id': entity.id })) }}</li>
+            </ul>
+        </div>
+        <hr class="dark" />
+        <h3>{{ 'post.title.show'|trans }}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="large-8 columns clean-section">
+        <div class="section-container" data-section data-options="deep_linking: true">
+        {% for translation in entity.translations %}
+            <div class="section">
+                <h5 class="title">
+                    <a href="#{{ translation.locale }}">
+                        <i class="icon-section-indicator"></i> {{ translation.locale|upper }}
+                    </a>
+                </h5>
+                <div class="content" data-slug="{{ translation.locale }}">
+                    <h6>{{ 'post.label.title'|trans }}</h6>
+                    <p><strong>{{ translation.title }}</strong></p>
+                    <h6>{{ 'post.label.excerpt'|trans }}</h6>
+                    <p>{{ translation.excerpt }}</p>
+                    <h6>{{ 'post.label.text'|trans }}</h6>
+                    <div>{{ translation.text|markdown }}</div>
+                    <h6>{{ 'public.link'|trans }}</h6>
+                    <div>
+                        <a target="_blank" href="{{ url(entity.urlRoute, entity.urlParams(translation.locale)) }}">
+                            <i class="icon-external-link"></i> /{{ translation.translatable.id }}/{{ translation.slug }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <h5><i class="icon-angle-right"></i> {{ 'post.label.labels'|trans }}</h5>
+        <p>{{ entity.labels|join(', ') }}</p>
+        <h5><i class="icon-angle-right"></i> {{ 'post.label.publishedAt'|trans }}</h5>
+        <p>{{ entity.publishedAt|date('format.datetime'|trans) }}</p>
+    </div>
+    <div class="large-4 columns">
+        <hr class="show-for-small" />
+        <ul class="small no-bullet color-text-light">
+            <li><i class="icon-key"></i> {{ entity.id }}</li>
+            <li><i class="icon-ok"></i> {{ 'label.createdAt'|trans }}: {{ entity.createdAt|date('format.datetime'|trans) }}</li>
+            <li><i class="icon-edit"></i> {{ 'label.updatedAt'|trans }}: {{ entity.updatedAt|date('format.datetime'|trans) }}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

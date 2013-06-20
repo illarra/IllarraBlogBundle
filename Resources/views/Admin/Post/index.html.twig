@@ -1,0 +1,100 @@
+{% extends "IllarraCoreBundle:Admin:layout.html.twig" %}
+
+{% trans_default_domain "illarra_admin" %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="button-bar right hide-for-small">
+            {{ helper.page_range(page, pages, entities_per_page, entities_count) }}
+            <ul class="button-group radius">
+                <li>{{ helper.page_previous_button('admin_illarra_blog_post_index', page, pages) }}</li>
+                <li>{{ helper.page_next_button('admin_illarra_blog_post_index', page, pages) }}</li>
+            </ul>
+        </div>
+        <div class="button-bar">
+            <ul class="button-group radius">
+                <li>{{ helper.action_select_button() }}</li>
+            </ul>
+            <ul class="button-group radius" data-table-view-actions>
+                <li>{{ helper.layout_table_button() }}</li>
+                <li>{{ helper.layout_grid_button() }}</li>
+            </ul>
+            {% if disqus_shortname is not null %}
+            <ul class="right button-group radius js-action-main">
+                <li>
+                    <a href="http://{{ disqus_shortname }}.disqus.com/admin/" target="_blank" class="secondary button"
+                        data-tooltip title="{{ 'action.disqus'|trans }}">
+                        <i class="icon-comment"></i>
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+            <ul class="button-group radius js-action-main">
+                <li>{{ helper.action_new_button(path('admin_illarra_blog_post_new')) }}</li>
+            </ul>
+            <ul class="button-group radius js-action-check" style="display:none">
+                <li>{{ helper.action_delete_all_button() }}</li>
+            </ul>
+        </div>
+        <hr class="dark" />
+        <h3>{{ 'post.title.index'|trans }}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <ul class="large-block-grid-3 fake-table js-table" data-grid="3">
+        {% for entity in entities %}
+            <li {{ helper.data_entity(entity) }}>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="fake-td">
+                            <h5 class="normal title">
+                                <span class="actions-icon-bar">
+                                    {{ helper.render_check() }}
+                                    {{ helper.render_is_visible_icon(entity) }}
+                                    {{ helper.render_is_featured_icon(entity) }}
+                                    <a class="right show-for-small color-text" href="{{ path('admin_illarra_blog_post_edit', { 'id': entity.id }) }}">
+                                        <i class="icon-edit"></i><span class="hide">{{ 'action.edit'|trans }}</span>
+                                    </a>
+                                </span>
+                                {{ entity.title }}
+                            </h5>
+                            <ul class="small inline-list hide-for-grid-1">
+                                <li><span>{{ entity.publishedAt|date('format.datetime'|trans) }}</span></li>
+                                <li>
+                                    <a href="{{ path('admin_illarra_blog_post_show', { 'id': entity.id }) }}">
+                                        <i class="icon-hand-right"></i> {{ 'action.show'|trans }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_illarra_blog_post_edit', { 'id': entity.id }) }}">
+                                        <i class="icon-edit"></i> {{ 'action.edit'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="hide-for-grid-1">
+                                <!--<img class="rounded avatar float-left" src="http://dgalywyr863hv.cloudfront.net/pictures/athletes/19995/451679/1/medium.jpg" />-->
+                                {{ (entity.excerpt ~ ' – ' ~ entity.text)|truncate(200) }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <div class="button-bar show-for-small">
+            <hr class="dark" />
+            <ul class="button-group radius">
+                <li>{{ helper.page_previous_button('admin_illarra_blog_post_index', page, pages) }}</li>
+                <li>{{ helper.page_next_button('admin_illarra_blog_post_index', page, pages) }}</li>
+            </ul>
+            {{ helper.page_range(page, pages, entities_per_page, entities_count) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

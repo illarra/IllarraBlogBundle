@@ -1,0 +1,35 @@
+menu:
+    blog:
+        main:        Bloga
+        posts:       Sarrerak
+        labels:      Etiketak
+
+action:
+    disqus:          Iruzkinak Disqus-en kudeatu
+    translation: 
+        delete:      Itzulpena ezabatu
+        confirm:     Ziur zaudek itzulpena ezabatu nahi duzula?
+
+label:
+    label:
+        name:        Izena
+    title:
+        edit:        Etiketa editatu
+        index:       Etiketa zerrenda
+        new:         Etiketa berri bat sortu
+        show:        Etiketa
+    counter:
+        posts:       '{0} Postik gabe |{1} Post bat |]1,Inf] %count% post'
+
+post:
+    label:
+        title:       Izenburua
+        excerpt:     Aurkezpena
+        text:        Testu orokorra
+        publishedAt: Argiratze-data
+        labels:      Etiketak
+    title:
+        edit:        Sarrera editatu
+        index:       Blogeko sarrerak
+        new:         Sarrera berri bat sortu
+        show:        Blogeko sarrera

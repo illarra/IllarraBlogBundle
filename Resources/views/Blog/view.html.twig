@@ -1,0 +1,31 @@
+{% extends "IllarraCoreBundle::base.html.twig" %}
+
+{% block title post.title %}
+{% block description post.excerpt %}
+
+{% block body %}
+    <h2>This a post placeholder</h2>
+    <h4>You should use <a href="http://symfony.com/doc/master/cookbook/bundles/inheritance.html" target="_blank">Bundle Inheritance</a> to override this view and adapt it to the project you are working on.</h4>
+    <p>Available data for this post:</p>
+    <code>
+        <ul>
+            <li><strong>post.id:</strong> {{ post.id }}</li>
+            <li><strong>post.title:</strong> "{{ post.title }}"</li>
+            <li><strong>post.excerpt:</strong> "{{ post.excerpt }}"</li>
+            <li><strong>post.text:</strong> "{{ post.text }}"</li>
+            <li><strong>post.createdAt:</strong> {{ post.createdAt|date('Y-m-d H:i') }}</li>
+            <li><strong>post.publishedAt:</strong> {{ post.publishedAt|date('Y-m-d H:i') }}</li>
+            <li><strong>post.isVisible:</strong> {{ post.isVisible }}</li>
+            <li><strong>post.url:</strong> {{ url(post.urlRoute, post.urlParams) }}</li>
+            <li>
+                <strong>post.labels:</strong>
+                <ul>
+                {% for label in post.labels %}
+                    <li><a href="{{ path(label.urlRoute, label.urlParams) }}">{{ label.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </code>
+    {{ disqus(post.id) }}
+{% endblock %}

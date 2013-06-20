@@ -1,0 +1,35 @@
+menu:
+    blog:
+        main:        Blog
+        posts:       Posts
+        labels:      Tags
+
+action:
+    disqus:          Manage comments in Disqus
+    translation:
+        delete:      Remove translation
+        confirm:     Are you sure you want to delete the translation?
+
+label:
+    label:
+        name:        Name
+    title:
+        edit:        Edit tag
+        index:       List of tags
+        new:         Create a new tag
+        show:        Tag
+    counter:
+        posts:       '{0} No posts |{1} One post |]1,Inf] %count% posts'
+
+post:
+    label:
+        title:       Title
+        excerpt:     Excerpt
+        text:        Main text
+        publishedAt: Published at
+        labels:      Tags
+    title:
+        edit:        Edit post
+        index:       Blog posts
+        new:         Create a new post
+        show:        Blog post

@@ -1,0 +1,19 @@
+{% extends "IllarraCoreBundle::base.html.twig" %}
+
+{% block title "Blog" %}
+
+{% block body %}
+    <h2>Posts</h2>
+    <h3>Pages: {{ pages }} | Page: {{ page }}</h3>
+    <h3>Posts per page: {{ postsPerPage }}</h3>
+    <h4>You should use <a href="http://symfony.com/doc/master/cookbook/bundles/inheritance.html" target="_blank">Bundle Inheritance</a> to override this view and adapt it to the project you are working on.</h4>
+    <code>
+        <ul>
+        {% for post in posts %}
+            <li><a href="{{ path(post.urlRoute, post.urlParams) }}">[{{ post.publishedAt|date('Y-m-d') }}] {{ post.title }} ({{ post.id }})</a></li>
+        {% endfor %}
+        </ul>
+    </code>
+    <hr />
+    <p><a href="{{ url('rss_feed') }}">RSS Feed</a></p>
+{% endblock %}

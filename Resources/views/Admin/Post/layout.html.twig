@@ -1,0 +1,10 @@
+{% extends "IllarraCoreBundle:Admin:layout.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        "@IllarraBlogBundle/Resources/assets/js/post.js"
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

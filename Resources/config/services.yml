@@ -1,0 +1,19 @@
+services:
+    illarra_blog.doctrine.post_counter_listener:
+        class: Illarra\BlogBundle\EventListener\OnFlushPostCounterListener
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+    illarra_blog.configure_admin_menu_listener:
+        class: Illarra\BlogBundle\EventListener\ConfigureAdminMenuListener
+        arguments: ["@security.context"]
+        tags:
+            - { name: kernel.event_listener, event: illarra_core.configure_admin_menu, method: onMenuConfigure }
+    illarra_blog.configure_sitemap_listener:
+        class: Illarra\BlogBundle\EventListener\ConfigureSitemapListener
+        tags:
+            - { name: kernel.event_listener, event: illarra_core.configure_sitemap, method: onMenuConfigure }
+    illarra_blog.twig.disqus_extension:
+        class: Illarra\BlogBundle\Twig\DisqusExtension
+        arguments: [%illarra_blog.comments.disqus_shortname%]
+        tags:
+            - { name: twig.extension }

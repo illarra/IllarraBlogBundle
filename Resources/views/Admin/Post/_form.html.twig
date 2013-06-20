@@ -1,0 +1,67 @@
+{% trans_default_domain "illarra_admin" %}
+
+<div data-post-section-tpl style="display:none;">
+    <div class="section" data-post-translation  data-post-translation-locale="__name__">
+        <h5 class="title">
+            <a href="#__name__" class="uppercase">
+                <i class="icon-section-indicator"></i> __name__
+            </a>
+        </h5>
+        <div class="content" data-slug="__name__">
+            {{ form_row(form.translations.vars.prototype.locale, {'value': '__name__'}) }}
+            {{ form_rest(form.translations.vars.prototype) }}
+            <div data-post-delete-translation>
+                <hr />
+                <a href="#" class="t-delete alert button" data-post-delete-confirm="{{ 'action.translation.confirm'|trans }}">{{ 'action.translation.delete'|trans }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="{{ action }}" method="POST" {{ form_enctype(form) }} class="clean-section">
+    {% if 'PUT' == method %}<input type="hidden" name="_method" value="PUT" />{% endif %}
+    {% include 'IllarraBlogBundle:Admin/Post:_form_pre.html.twig' with {'form': form} only %}
+    {{ form_row(form.publishedAt) }}
+    <div class="section-container" data-section data-post-translations data-options="deep_linking: true">
+    {% for translation in form.translations %}
+        {# Aldaketak templatian reflejatu #}
+        <div class="section" data-post-translation data-post-translation-locale="{{ translation.locale.get('value') }}">
+            <h5 class="title">
+                <a href="#{{ translation.locale.get('value') }}">
+                    <i class="icon-section-indicator"></i> {{ translation.locale.get('value')|upper }}
+                </a>
+            </h5>
+            <div class="content" data-slug="{{ translation.locale.get('value') }}">
+                {{ form_rest(translation) }}
+                <div data-post-delete-translation>
+                    <hr />
+                    <a href="#" class="t-delete alert button" data-post-delete-confirm="{{ 'action.translation.confirm'|trans }}">{{ 'action.translation.delete'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% if blog_type.predefined_locales != true %}
+        <div class="section" data-post-new-locale-section>
+            <h5 class="title">
+                <a href="#newLocale">
+                    <small><i class="icon-plus-sign color-primary small"></i></small> {{ 'label.newLocale'|trans }}
+                </a>
+            </h5>
+            <div class="content" data-slug="newLocale">
+                <p>{{ 'action.addNewLocale'|trans }}:</p>
+                <ul class="inline-list">
+                    <li><a href="#" data-post-add-new-locale data-post-locale="es">Castellano</a></li>
+                    <li><a href="#" data-post-add-new-locale data-post-locale="it">Italiano</a></li>
+                    <li><a href="#" data-post-add-new-locale data-post-locale="fr">Française</a></li>
+                    <li><a href="#" data-post-add-new-locale data-post-locale="ca">Català</a></li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+    {% include 'IllarraBlogBundle:Admin/Post:_form_post.html.twig' with {'form': form} only %}
+    {{ form_rest(form) }}
+    <hr />
+    <p>
+        <button class="t-save radius button" type="submit">{{ 'action.save'|trans }}</button>
+    </p>
+</form>

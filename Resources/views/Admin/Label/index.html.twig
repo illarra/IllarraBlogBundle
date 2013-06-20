@@ -1,0 +1,69 @@
+{% extends "IllarraCoreBundle:Admin:layout.html.twig" %}
+
+{% import "IllarraCoreBundle:Admin:helper.html.twig" as helper %}
+
+{% trans_default_domain "illarra_admin" %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="button-bar right hide-for-small">
+            {{ helper.page_range(page, pages, entities_per_page, entities_count) }}
+            <ul class="button-group radius">
+                <li>{{ helper.page_previous_button('admin_illarra_blog_label_index', page, pages) }}</li>
+                <li>{{ helper.page_next_button('admin_illarra_blog_label_index', page, pages) }}</li>
+            </ul>
+        </div>
+        <div class="button-bar">
+            <ul class="button-group radius">
+                <li>{{ helper.action_select_button() }}</li>
+            </ul>
+            <ul class="button-group radius js-action-main">
+                <li>{{ helper.action_new_button(path('admin_illarra_blog_label_new')) }}</li>
+            </ul>
+            <ul class="button-group radius js-action-check" style="display:none">
+                <li>{{ helper.action_delete_all_button() }}</li>
+            </ul>
+        </div>
+        <hr class="dark" />
+        <h3>{{ 'label.title.index'|trans }}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns fake-table js-table">
+    {% for entity in entities %}
+        <div class="fake-tr" {{ helper.data_entity(entity) }}>
+            <div class="row">
+                <div class="large-9 columns">
+                    <span class="actions-icon-bar">
+                        {{ helper.render_check() }}
+                        <a class="right show-for-small color-text" href="{{ path('admin_illarra_blog_label_edit', { 'id': entity.id }) }}">
+                            <i class="icon-edit"></i><span class="hide">{{ 'action.edit'|trans }}</span>
+                        </a>
+                    </span>
+                    {{ entity.slug }}
+                    <em class="extra">{{ 'label.counter.posts'|transchoice(entity.counter.posts) }}</em>
+                </div>
+                <div class="large-3 columns hide-for-small small text-right">
+                    <a href="{{ path('admin_illarra_blog_label_edit', { 'id': entity.id }) }}">
+                        <i class="icon-edit"></i> {{ 'action.edit'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <div class="button-bar show-for-small">
+            <hr class="dark" />
+            <ul class="button-group radius">
+                <li>{{ helper.page_previous_button('admin_illarra_blog_label_index', page, pages) }}</li>
+                <li>{{ helper.page_next_button('admin_illarra_blog_label_index', page, pages) }}</li>
+            </ul>
+            {{ helper.page_range(page, pages, entities_per_page, entities_count) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

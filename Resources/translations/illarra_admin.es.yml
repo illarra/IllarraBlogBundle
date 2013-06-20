@@ -1,0 +1,35 @@
+menu:
+    blog:
+        main:        Blog
+        posts:       Entradas
+        labels:      Etiquetas
+
+action:
+    disqus:          Gestionar comentarios en Disqus
+    translation: 
+        delete:      Eliminar traducción
+        confirm:     ¿Estás seguro de que quieres eliminar la traducción?
+
+label:
+    label:
+        name:        Nombre
+    title:
+        edit:        Editar etiqueta
+        index:       Etiquetas disponibles
+        new:         Crear una nueva etiqueta
+        show:        Etiqueta
+    counter:
+        posts:       '{0} Sin posts |{1} Un post |]1,Inf] %count% posts'
+
+post:
+    label:
+        title:       Título
+        excerpt:     Introducción
+        text:        Texto general
+        publishedAt: Fecha de publicación
+        labels:      Etiquetas
+    title:
+        edit:        Editar entrada
+        index:       Entradas del blog
+        new:         Crear una nueva entrada
+        show:        Entrada del blog
