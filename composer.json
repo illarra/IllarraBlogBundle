@@ -2,7 +2,7 @@
   "name": "illarra/blog-bundle",
   "description": "Blog entities and classes.",
   "keywords": ["blog", "bundle"],
-  "homepage": "https://bitbucket.org/illarra/illarrablogbundle",
+  "homepage": "https://github.com/illarra/IllarraBlogBundle",
   "type": "symfony-bundle",
   "license": "MIT",
   "authors": [
